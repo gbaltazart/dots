@@ -32,8 +32,11 @@
     {
       "buttons" : {
         "autoScroll" : {
-          "enabled" : false,
-          "mode" : "toggle",
+          "enabled" : true,
+          "mode" : [
+            "toggle",
+            "hold"
+          ],
           "speed" : 1,
           "trigger" : {
             "button" : 2
