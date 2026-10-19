@@ -66,6 +66,22 @@
           "vertical" : 39
         }
       }
+    },
+    {
+      "buttons" : {
+        "autoScroll" : {
+          "enabled" : false
+        }
+      },
+      "if" : {
+        "app" : "com.moonlight-stream.Moonlight",
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xc53f",
+          "productName" : "USB Receiver",
+          "vendorID" : "0x46d"
+        }
+      }
     }
   ]
 }

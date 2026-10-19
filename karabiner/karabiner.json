@@ -2,17 +2,350 @@
     "global": { "show_in_menu_bar": false },
     "profiles": [
         {
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "description": "Fn Lock: Toggle standard F-keys / Media keys with Fn + Esc (Auto-enables in Moonlight)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "fn_lock",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    }
+                                ],
+                                "description": "Toggle fn_lock variable ON (1) when Fn + Esc is pressed and it was OFF (0)",
+                                "from": {
+                                    "key_code": "escape",
+                                    "modifiers": { "mandatory": ["fn"] }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "fn_lock",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "set_notification_message": {
+                                            "duration_milliseconds": 1500,
+                                            "id": "fn_lock_status",
+                                            "text": "Fn Lock: ON (Standard F-Keys)"
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "fn_lock",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "description": "Toggle fn_lock variable OFF (0) when Fn + Esc is pressed and it was ON (1)",
+                                "from": {
+                                    "key_code": "escape",
+                                    "modifiers": { "mandatory": ["fn"] }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "fn_lock",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_notification_message": {
+                                            "duration_milliseconds": 1500,
+                                            "id": "fn_lock_status",
+                                            "text": "Fn Lock: OFF (Media Keys)"
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "fn_lock",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.moonlight-stream\\.Moonlight$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "F1 -> Brightness Down (when fn_lock is 0 AND Moonlight is not active)",
+                                "from": {
+                                    "key_code": "f1",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "consumer_key_code": "display_brightness_decrement" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "fn_lock",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.moonlight-stream\\.Moonlight$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "F2 -> Brightness Up (when fn_lock is 0 AND Moonlight is not active)",
+                                "from": {
+                                    "key_code": "f2",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "consumer_key_code": "display_brightness_increment" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "fn_lock",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.moonlight-stream\\.Moonlight$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "F3 -> Mission Control (when fn_lock is 0 AND Moonlight is not active)",
+                                "from": {
+                                    "key_code": "f3",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "apple_vendor_keyboard_key_code": "mission_control" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "fn_lock",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.moonlight-stream\\.Moonlight$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "F4 -> Launchpad (when fn_lock is 0 AND Moonlight is not active)",
+                                "from": {
+                                    "key_code": "f4",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "apple_vendor_keyboard_key_code": "launchpad" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "fn_lock",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.moonlight-stream\\.Moonlight$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "F5 -> Keyboard Illumination Down (when fn_lock is 0 AND Moonlight is not active)",
+                                "from": {
+                                    "key_code": "f5",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "illumination_decrement" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "fn_lock",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.moonlight-stream\\.Moonlight$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "F6 -> Keyboard Illumination Up (when fn_lock is 0 AND Moonlight is not active)",
+                                "from": {
+                                    "key_code": "f6",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "illumination_increment" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "fn_lock",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.moonlight-stream\\.Moonlight$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "F7 -> Media Rewind (when fn_lock is 0 AND Moonlight is not active)",
+                                "from": {
+                                    "key_code": "f7",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "consumer_key_code": "rewind" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "fn_lock",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.moonlight-stream\\.Moonlight$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "F8 -> Media Play/Pause (when fn_lock is 0 AND Moonlight is not active)",
+                                "from": {
+                                    "key_code": "f8",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "consumer_key_code": "play_or_pause" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "fn_lock",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.moonlight-stream\\.Moonlight$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "F9 -> Media Fast Forward (when fn_lock is 0 AND Moonlight is not active)",
+                                "from": {
+                                    "key_code": "f9",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "consumer_key_code": "fast_forward" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "fn_lock",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.moonlight-stream\\.Moonlight$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "F10 -> Mute (when fn_lock is 0 AND Moonlight is not active)",
+                                "from": {
+                                    "key_code": "f10",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "consumer_key_code": "mute" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "fn_lock",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.moonlight-stream\\.Moonlight$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "F11 -> Volume Down (when fn_lock is 0 AND Moonlight is not active)",
+                                "from": {
+                                    "key_code": "f11",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "consumer_key_code": "volume_decrement" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "fn_lock",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.moonlight-stream\\.Moonlight$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "F12 -> Volume Up (when fn_lock is 0 AND Moonlight is not active)",
+                                "from": {
+                                    "key_code": "f12",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "consumer_key_code": "volume_increment" }],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
             "devices": [
                 {
                     "identifiers": { "is_keyboard": true },
                     "simple_modifications": [
                         {
-                            "from": { "key_code": "left_control" },
-                            "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }]
-                        },
-                        {
                             "from": { "apple_vendor_top_case_key_code": "keyboard_fn" },
                             "to": [{ "key_code": "left_control" }]
+                        },
+                        {
+                            "from": { "key_code": "left_control" },
+                            "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }]
                         }
                     ]
                 }
