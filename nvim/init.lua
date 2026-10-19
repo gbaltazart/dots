@@ -29,4 +29,4 @@ require("lazy").setup({
 
 require("keymaps")
 require("transparent")
-
+require("options")
